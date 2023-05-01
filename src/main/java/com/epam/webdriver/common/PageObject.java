@@ -49,5 +49,9 @@ public abstract class PageObject {
 			.collect(Collectors.joining("\n"));
 	}
 
+	protected void waitForElement(By by) {
+		wait.until(ExpectedConditions.presenceOfElementLocated(by));
+	}
+
 	protected abstract void init(WebDriver webDriver);
 }
