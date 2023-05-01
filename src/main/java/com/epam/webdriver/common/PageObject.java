@@ -1,6 +1,8 @@
 package com.epam.webdriver.common;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,6 +36,17 @@ public abstract class PageObject {
 	protected void selectOption(WebElement select, By option) {
 		clickElement(select);
 		clickElement(option);
+	}
+
+	protected String getElementText(WebElement webElement) {
+		return wait.until(ExpectedConditions.visibilityOf(webElement)).getText();
+	}
+
+	protected String getElementsText(List<WebElement> webElements) {
+		return wait.until(ExpectedConditions.visibilityOfAllElements(webElements))
+			.stream()
+			.map(WebElement::getText)
+			.collect(Collectors.joining("\n"));
 	}
 
 	protected abstract void init(WebDriver webDriver);
