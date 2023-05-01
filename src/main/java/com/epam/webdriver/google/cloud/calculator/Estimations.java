@@ -15,6 +15,8 @@ public class Estimations extends GoogleCloudCalculatorFrame implements Locatable
 	private static final String TOTAL_COST_REGEX = "(?<=Total Estimated Cost:\\s)(.*?)(?=\\sper 1 month)";
 	@FindBy(xpath = "//div[@class='cpc-cart-total']/descendant::b")
 	private WebElement totalCostRow;
+	@FindBy(xpath = "//button[@title='Email Estimate']")
+	private WebElement emailEstimationButton;
 
 	private final ComputeEngineEstimation computeEngineEstimation;
 
@@ -35,6 +37,13 @@ public class Estimations extends GoogleCloudCalculatorFrame implements Locatable
 			.map(MatchResult::group)
 			.findFirst()
 			.orElse(totalCostRowValue);
+	}
+
+	public EmailEstimationForm emailEstimation() {
+		clickElement(emailEstimationButton);
+		var emailEstimateForm = new EmailEstimationForm(webDriver);
+		waitForElement(emailEstimateForm.getLocator());
+		return emailEstimateForm;
 	}
 
 	@Override
