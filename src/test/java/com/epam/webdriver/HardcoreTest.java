@@ -65,9 +65,7 @@ public class HardcoreTest extends WebDriverTest {
 
 		webDriver.switchTo().window(googleTab);
 
-		emailEstimateForm
-			.enterEmailAddress(Keys.chord(Keys.COMMAND, "v"))
-			.sendEmail();
+		emailEstimateForm.sendEmail(Keys.chord(Keys.COMMAND, "v"));
 
 		webDriver.switchTo().window(yopmailTab);
 
