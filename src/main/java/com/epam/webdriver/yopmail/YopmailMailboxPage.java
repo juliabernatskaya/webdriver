@@ -29,10 +29,6 @@ public class YopmailMailboxPage extends PageObject {
 		return this;
 	}
 
-	public int getEmailCount() {
-		return Integer.parseInt(getElementText(emailCountTag).replaceAll("\\D*", ""));
-	}
-
 	public String getEmailText() {
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(MAIL_FRAME));
 		String emailText = getElementText(emailBody);
@@ -50,6 +46,10 @@ public class YopmailMailboxPage extends PageObject {
 				return getEmailCount() > initialEmailCount;
 			});
 		return this;
+	}
+
+	private int getEmailCount() {
+		return Integer.parseInt(getElementText(emailCountTag).replaceAll("\\D*", ""));
 	}
 
 	@Override
