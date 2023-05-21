@@ -20,12 +20,17 @@ public class EmailEstimationForm extends GoogleCloudCalculatorFrame implements L
 		super(webDriver);
 	}
 
-	public EmailEstimationForm enterEmailAddress(String email) {
+	public void sendEmail(String email) {
+		enterEmailAddress(email);
+		tapSendEmailButton();
+	}
+
+	private EmailEstimationForm enterEmailAddress(String email) {
 		fillForm(emailInput, email);
 		return this;
 	}
 
-	public void sendEmail() {
+	private void tapSendEmailButton() {
 		clickElement(sendEmailButton);
 	}
 
